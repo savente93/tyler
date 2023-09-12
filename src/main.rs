@@ -26,10 +26,11 @@ struct TestCase<'a> {
 }
 
 #[derive(Parser, Debug)]
-#[command(author, version, about, long_about = None)]
+#[command(author, version, about, long_about = None,)]
+// add `disable_help_flag = true` to command so that `horz_overlap_mm` and `help` do not have the same short flag
 struct Args {
     /// Name of the person to greet
-    #[arg(short, long, default_value_t = 20.0)]
+    #[arg(long, default_value_t = 20.0)]
     horz_overlap_mm: f64,
 
     #[arg(short, long, default_value_t = 20.0)]
@@ -40,7 +41,7 @@ impl<'a> TestCase<'a> {
     pub fn leviathan() -> TestCase<'a> {
         // leviathan length to head ratio seems very consistently 2.75
         TestCase {
-            img_path: "imgs/leviathan.png",
+            img_path: "testing_assets/leviathan.png",
             length_mm: 919.0,
             width_mm: 334.18, //using sneaky maths, a ruler, and promotional material
             printed_length_mm: 92.0,
@@ -52,7 +53,7 @@ impl<'a> TestCase<'a> {
 
     pub fn ruler() -> TestCase<'a> {
         TestCase {
-            img_path: "imgs/ruler.png",
+            img_path: "testing_assets/ruler.jpg",
             length_mm: 190.0,
             width_mm: 710.0,
             printed_length_mm: 70.0,
@@ -107,7 +108,13 @@ impl ScreenSize {
 fn main() {
     let args = Args::parse();
     let test_case = TestCase::ruler();
-    let img = image::open(test_case.img_path).unwrap();
+    let img = match image::open(test_case.img_path) {
+        Ok(img) => img,
+        Err(e) => {
+            println!("Error: {} \nCheck if the image file is actually an image or a link to a file in git-lfs", e);
+            return;
+        }
+    };
 
     let screen_size = ScreenSize::monitor();
     let paper_size = PaperSize::a4();
@@ -169,7 +176,7 @@ fn main() {
 
     println!("writing tyles");
     sub_pannels.iter().enumerate().for_each(|(idx, tile)| {
-        let mut output = File::create(format!("imgs/out{}.png", idx)).unwrap();
+        let mut output = File::create(format!("testing_assets/out{}.png", idx)).unwrap();
 
         tile.to_image()
             .write_to(&mut output, ImageFormat::Png)
