@@ -7,6 +7,7 @@ mod math;
 use crate::cli::Args;
 use image::{imageops, ImageFormat, SubImage};
 use math::image::ScreenSize;
+use math::misc::*;
 use math::paper::PaperSize;
 use math::tiles::*;
 use std::fs::File;
@@ -85,21 +86,4 @@ fn main() {
             sub_pannels.push(sub_pannel);
         }
     }
-
-    println!("writing tyles");
-    sub_pannels.iter().enumerate().for_each(|(idx, tile)| {
-        let mut output = File::create(format!("testing_assets/out{}.png", idx)).unwrap();
-
-        tile.to_image()
-            .write_to(&mut output, ImageFormat::Png)
-            .unwrap();
-    })
-}
-
-fn mm_to_px(ppmm: f64, value: f64) -> u32 {
-    (value / ppmm) as u32
-}
-
-fn px_to_mm(ppmm: f64, value: u32) -> f64 {
-    value as f64 * ppmm
 }
