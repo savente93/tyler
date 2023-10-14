@@ -51,3 +51,9 @@ cargo build && RUST_BACKTRACE=full target/debug/tyler --help
 cargo build && RUST_BACKTRACE=full target/debug/tyler
 ```
 
+## Current design assumptions:
+- everything is 2D
+- all coordinates are positive (i.e. all images live in the (0,0) -> (w,h) quadrent)
+- Everying is axis aligned, no paralaxing or rotation is considered. 
+
+The above assumptions are to simply development as a starting point, we may relax some of them down the line, but to get off the ground they are necessary.
