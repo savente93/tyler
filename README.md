@@ -1,13 +1,13 @@
 # TYLER
 
-Yup, that's the name! 
+Yup, that's the name!
 
 ## Why do I exist?
 
 Two words. Adam Savage.
 That beautiful human person is the muse, maker, mythbuster extraordinaire who inspired this project.
 Adam often makes things that need templates. These huge templates (the projects are big and fabulous) need to be printed on paper.
-Paper that is A4 in size and printed upon by home-office based printers. 
+Paper that is A4 in size and printed upon by home-office based printers.
 
 This requires the template to be tiled. This bit does not have a good software solution.
 Not my original thought. Its Adams. And we heard the call. This project aims to answer it!
@@ -54,6 +54,6 @@ cargo build && RUST_BACKTRACE=full target/debug/tyler
 ## Current design assumptions:
 - everything is 2D
 - all coordinates are positive (i.e. all images live in the (0,0) -> (w,h) quadrent)
-- Everying is axis aligned, no paralaxing or rotation is considered. 
+- Everying is axis aligned, no paralaxing or rotation is considered.
 
 The above assumptions are to simply development as a starting point, we may relax some of them down the line, but to get off the ground they are necessary.
