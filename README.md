@@ -11,6 +11,7 @@ Paper that is A4 in size and printed upon by home-office based printers.
 
 This requires the template to be tiled. This bit does not have a good software solution.
 Not my original thought. Its Adams. And we heard the call. This project aims to answer it!
+reference: https://www.youtube.com/watch?v=iuNjDzT6PWo
 
 ## How do I run it?
 
