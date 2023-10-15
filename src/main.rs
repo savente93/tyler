@@ -1,15 +1,16 @@
 #![allow(unused_imports, unused_variables, dead_code)]
 
-use clap::Parser;
 mod cli;
 mod math;
 
-use crate::cli::Args;
-use image::{imageops, ImageFormat, SubImage};
+use cli::Args;
 use math::image::ScreenSize;
 use math::misc::*;
 use math::paper::PaperSize;
 use math::tiles::*;
+
+use clap::Parser;
+use image::{imageops, ImageFormat, SubImage};
 use std::fs::File;
 use std::io::BufWriter;
 
